@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/sample.js"></script>
+</head>
+
+<body>
+    <div ng-app="sample">
+        
+    sds
+    <div ng-controller="RootObj">
+        <script type="text/ng-template" id="obj-templ"  ng-init="item = data">
+        <span ng-bind="item"></span>
+        <span ng-bind="item.name"></span>
+            {{data.name}}
+            <ul ng-if="item.children">
+                <li ng-repeat="item in item.children" ng-include="'obj-templ'"></li>
+            </ul>
+        </script>
+        <div ng-include="'obj-templ'"></div>       
+        
+        
+        <!--<script type="text/ng-template" id="/category-tree.html">
+        <h4>sds</h4>
+            {{ category.title }}
+            <ul ng-if="category.categories">
+                <li ng-repeat="category in category.categories" ng-include="'/category-tree.html'">
+                </li>
+            </ul>
+        </script>
+        
+        <div ng-include="'/category-tree.html'"></div>-->
+    </div>
+    </div>
+</body>
+
+</html>

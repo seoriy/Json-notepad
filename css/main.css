@@ -1,0 +1,176 @@
+.objSection, section.toolbar {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+footer {
+    background: deepskyblue;
+    color: white !important;
+    margin: 50px 0px 0px 0px;
+    padding: 20px 50px 20px;
+}
+footer>div {
+    margin: 0px;
+    display: inline-block;
+    font-size: 120%;
+    margin-right: 2em;
+}
+footer>div>* {
+    color: white !important;
+}
+
+/************
+     TOOLBAR
+************/
+
+.sampleSelect{
+    display: inline-block !important;
+    width: 100px !important;
+}
+
+div.form-toolbar>span
+{
+    float: right;
+}
+/************
+     ROWs
+************/
+
+.row-container {
+    padding-left: 10px;
+}
+.row-container>.str-row, .row-container>.array-row, .row-container>.obj-row {
+    margin: 1px;
+}
+.row-container>.str-row
+{
+    display: table;
+}
+
+.row-container>.obj-row:hover>.label-obj, 
+.row-container>.array-row:hover>.label-obj, 
+tr:hover>td>div>.row-container>.obj-row, 
+tr:hover>td>div>.row-container>.array-row 
+{
+    border: 1px solid white;
+    color: black;
+    background: white;
+    margin-right: 10px;
+}
+.row-container:hover>.array-row>table.array-list
+tr:hover>td>div>.row-container>.obj-row, 
+tr:hover>td>div>.row-container>.array-row 
+{
+    box-shadow: 2px 2px 2px deepskyblue;
+}
+
+/*************
+     LABELS 
+*************/
+
+.label {
+    background: deepskyblue;
+    color: white;
+    padding: 2px 5px 2px;
+    font-weight: bolder;   
+    
+    font: bolder 1em Helvetica;
+    vertical-align: top;
+    margin-right: 0px 12px 2px 0px;
+}
+.label-array, .label-obj, .editor-panel {
+    display: inline-block;
+}
+.label-arr-item {
+    margin-left: 5px;
+}
+.label:hover.label-simple  {
+    /*border: 1px solid white;*/
+    box-shadow: 2px 2px 2px deepskyblue;
+    color: black;
+    background: white;
+    margin-right: 10px;
+}
+.label:hover>.label-obj, .label:hover>.label-array  {
+    /*border: 1px solid white;*/
+    color: black;
+    background: white;
+    margin-right: 10px;
+}
+
+/*************
+     FIELDS
+*************/
+
+.field-simple:hover{
+    /*background: #e5e5e5;*/
+    font-weight: bolder;
+}
+.field-simple {
+    margin: 5px;
+}
+.field-str {
+    color: black;
+}
+.field-num {
+    color: red;
+}
+.field-date {
+    color: green;
+}
+.field-obj  {
+    padding-left: 10px;
+    border: 1px solid deepskyblue;
+    margin-bottom: 2px !important;
+    z-index: 3;
+    position: relative;
+    fill-opacity: 1;
+}
+.field-obj:hover  {
+    box-shadow: 2px 2px 2px deepskyblue;
+}
+
+/*************
+     TABLES
+*************/
+
+table.array-list, div.obj {
+    margin: 0px;
+    border: 1px solid deepskyblue;
+}
+tr:hover>td>div>.row-container>.str-row {
+    font-weight: bolder;
+}
+th {
+    font-weight: bolder;
+    color: white !important;
+    background: deepskyblue;
+    border: 1px solid deepskyblue;
+}
+th:hover {    
+    color: black !important;
+    background: white !important;
+}
+td {
+    padding: 0px !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;    
+}
+td.td-index
+{
+    color: white !important;
+    background: deepskyblue;
+}
+td.td-index {
+    color: black;
+    font-weight: bolder;
+}
+
+/*************
+     FORMS
+*************/
+
+span.edit-field {
+    display: block;
+    overflow: hidden;
+    padding: 0 5px;
+}
