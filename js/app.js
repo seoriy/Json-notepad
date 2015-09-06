@@ -72,7 +72,7 @@
 
             $scope.isSimpleField = function (obj) { return angular.isString(obj) || angular.isNumber(obj) || angular.isDate(obj); };
             $scope.isStringField = function (obj) { return angular.isString(obj); };
-            $scope.isNumberField = function (obj) { angular.isNumber(obj); };
+            $scope.isNumberField = function (obj) { return angular.isNumber(obj); };
             $scope.isDateField = function (obj) { return angular.isDate(obj); };
 
             $scope.isLabelDefined = function (f) { return f == 0 || f; };

@@ -3,7 +3,7 @@
     margin-right: 20px;
 }
 footer {
-    background: deepskyblue;
+    background: dodgerblue;
     color: white !important;
     margin: 50px 0px 0px 0px;
     padding: 20px 50px 20px;
@@ -47,7 +47,7 @@ div.form-toolbar>span
 }
 
 .row-container>.obj-row:hover>.label-obj, 
-.row-container>.array-row:hover>.label-obj, 
+.row-container>.array-row:hover>.label-array, 
 tr:hover>td>div>.row-container>.obj-row, 
 tr:hover>td>div>.row-container>.array-row 
 {
@@ -56,11 +56,17 @@ tr:hover>td>div>.row-container>.array-row
     background: white;
     margin-right: 10px;
 }
-.row-container:hover>.array-row>table.array-list
-tr:hover>td>div>.row-container>.obj-row, 
-tr:hover>td>div>.row-container>.array-row 
+tr:hover>td>div>.row-container>.obj-row>.field-obj, 
+tr:hover>td>div>.row-container>.array-row>table.array-list
 {
-    box-shadow: 2px 2px 2px deepskyblue;
+    box-shadow: 1px 1px 1px dodgerblue;
+}
+.field-obj:hover,
+.array-row:hover>table.array-list,
+tr:hover>td>div>.row-container:hover>.obj-row:hover>.field-obj, 
+tr:hover>td>div>.row-container:hover>.array-row>table.array-list
+{
+    box-shadow: 2px 2px 2px dodgerblue;
 }
 
 /*************
@@ -68,29 +74,35 @@ tr:hover>td>div>.row-container>.array-row
 *************/
 
 .label {
-    background: deepskyblue;
+    background: dodgerblue;
     color: white;
     padding: 2px 5px 2px;
     font-weight: bolder;   
     
     font: bolder 1em Helvetica;
     vertical-align: top;
-    margin-right: 0px 12px 2px 0px;
+    margin: 0px 12px 1px 0px;
 }
-.label-array, .label-obj, .editor-panel {
+.label-array, 
+.label-obj, 
+.editor-panel 
+{
     display: inline-block;
 }
 .label-arr-item {
     margin-left: 5px;
+    margin-right: 5px;
 }
 .label:hover.label-simple  {
     /*border: 1px solid white;*/
-    box-shadow: 2px 2px 2px deepskyblue;
+    box-shadow: 2px 2px 2px dodgerblue;
     color: black;
     background: white;
     margin-right: 10px;
 }
-.label:hover>.label-obj, .label:hover>.label-array  {
+.label:hover.label-obj, 
+.label:hover.label-array  
+{
     /*border: 1px solid white;*/
     color: black;
     background: white;
@@ -108,25 +120,16 @@ tr:hover>td>div>.row-container>.array-row
 .field-simple {
     margin: 5px;
 }
-.field-str {
-    color: black;
-}
-.field-num {
-    color: red;
-}
-.field-date {
-    color: green;
-}
+.field-str { color: black; }
+.field-num { color: red; }
+.field-date { color: green; }
 .field-obj  {
     padding-left: 10px;
-    border: 1px solid deepskyblue;
+    border: 1px solid dodgerblue;
     margin-bottom: 2px !important;
     z-index: 3;
     position: relative;
     fill-opacity: 1;
-}
-.field-obj:hover  {
-    box-shadow: 2px 2px 2px deepskyblue;
 }
 
 /*************
@@ -135,7 +138,7 @@ tr:hover>td>div>.row-container>.array-row
 
 table.array-list, div.obj {
     margin: 0px;
-    border: 1px solid deepskyblue;
+    border: 1px solid dodgerblue;
 }
 tr:hover>td>div>.row-container>.str-row {
     font-weight: bolder;
@@ -143,8 +146,8 @@ tr:hover>td>div>.row-container>.str-row {
 th {
     font-weight: bolder;
     color: white !important;
-    background: deepskyblue;
-    border: 1px solid deepskyblue;
+    background: dodgerblue;
+    border: 1px solid dodgerblue;
 }
 th:hover {    
     color: black !important;
@@ -158,10 +161,9 @@ td {
 td.td-index
 {
     color: white !important;
-    background: deepskyblue;
-}
-td.td-index {
-    color: black;
+    background: dodgerblue;
+    text-align: center !important;
+    align-content: center;
     font-weight: bolder;
 }
 

@@ -9,8 +9,8 @@
     001.1 Modal form iself with textarea
     001.2 Query constructor
 002 Git it
-    002.1 in local rep   //19:55
-    002.2 port it on GitHub
+    002.1 in local rep   //19:55-21:34
+    002.2 port it on GitHub 
 003 json viewer
     003.1 path to field (on mouse over) as breadcrumb
     003.2 higlight all occurence of selected field

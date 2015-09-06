@@ -1,17 +1,17 @@
 <div class="row-container">
     <div ng-if="isSimpleField(v)" class="str-row" ng-init="editValue=v">
-        <span class="label label-simple" ng-if="isLabelDefined(f)" ng-bind="f" ng-dblclick="editField(f, itemIndex)"></span>
+        <!--ng-dblclick="editField(f, itemIndex)"-->
+        <span class="label label-simple" ng-if="isLabelDefined(f)" ng-bind="f"></span>
 
-        <a class="field field-simple" ng-if="isLink(v) && !isEditingField(f, itemIndex)" target="_blank" ng-bind="v" ng-href="{{v}}" ng-dblclick="editField(f, itemIndex)"></a>
-        <span class="field field-simple" ng-if="!isLink(v) && !isEditingField(f, itemIndex)" ng-bind="v" ng-dblclick="editField(f, itemIndex)"
+        <a class="field field-simple" ng-if="isLink(v) && !isEditingField(f, itemIndex)" target="_blank" ng-bind="v" ng-href="{{v}}"></a>
+        <span class="field field-simple" ng-if="!isLink(v) && !isEditingField(f, itemIndex)" ng-bind="v" 
               ng-class="{'field-str': isStringField(v), 'field-num': isNumberField(v), 'field-date': isDateField(v)}"></span>
-
         <!--editor-->
         <span class="edit-field">
-            <input type="text" ng-if="isEditingField(f, itemIndex)" ng-model="editValue" ng-blur="editField('', -1)" autofocus
-            ng-keyup="$event.keyCode == 13 && editField('', -1) && submitValue(editValue, target, f, $index)"></span>
+            <!-- TODO: how to autofocus https://coderwall.com/p/a41lwa/angularjs-auto-focus-into-input-field-when-ng-show-event-is-triggered-->
+            <!--<input type="text" ng-if="isEditingField(f, itemIndex)" ng-model="editValue" ng-blur="editField('', -1)" autofocus
+            ng-keyup="$event.keyCode == 13 && editField('', -1) && submitValue(editValue, target, f, $index)"></span>-->
     </div>
-
     <div ng-if="isArrayField(v)" class="array-row" ng-init="arr=parseArray(v)">
         <div class="label label-array" ng-if="isLabelDefined(f)" ng-bind="f"></div>
         <table class="array-list" ng-if="arr">
@@ -23,7 +23,7 @@
             </tr>
             <tr ng-repeat="item in arr.array track by $index" ng-init="itemIndex = $index">
                 <td class="td-index" class="label-arr-item">
-                    [<span class="label-arr-item" ng-bind="$index"></span>]
+                    <span class="label-arr-item" ng-bind="$index"></span>
                 </td>
                 <td ng-repeat="field in arr.fields track by $index" ng-if="!arr.isSimple">
                     <div ng-include="'parts/item-view.html'" ng-if="item.hasOwnProperty(field)" ng-init="f=null; v=item[field]; target=item"></div>
@@ -34,7 +34,6 @@
             </tr>
         </table>
     </div>
-
     <div ng-if="isObjectField(v)" class="obj-row">
         <div class="label label-obj" ng-if="isLabelDefined(f)" ng-bind="f"></div>
         <div class="field field-obj" ng-include="'objTemplate'" ng-init="target=v; itemIndex=0"></div>
