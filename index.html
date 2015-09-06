@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 
 <head>
-    <title>App sample</title>
+    <title>JSON notepad</title>
 
     <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
@@ -20,24 +20,28 @@
 <body ng-app="jsonEditor" ng-controller="RootObj">
     <header>
         <div class="panel">
-            <h2>JSON editor</h2></div>
+            <div class="header-panel">
+                <h2>JSON notepad <span class="version-label">(0.0.1)</span></h2>
+            </div>
+            <div class="header-info">
+                <i class="fa fa-exclamation"></i> Editing is not supported yet.</div>
+        </div>
     </header>
-
     <section class="toolbar">
         <div class="form">
             <textarea rows="5" ng-model="jsonObj"></textarea>
             <div class="form-toolbar">
-                <a class="button large " ng-click="parseObject()">Parse</a>
-                <a class="button large secondary" ng-click="resetInput()">Reset input</a>
+                <a id="" class="button small " ng-click="parseObject()">Parse</a>
+                <a id="" class="button small secondary" ng-click="resetInput()">Clear</a>
                 <span>
                     <label>Samples&nbsp;
-                    <select name="samples" class="sampleSelect" ng-options="s.name as s.descr for s in samples" ng-model="selectedSample" ng-change="loadSample(selectedSample)"></select>
+                    <select name="samples" class="sampleSelect" ng-options="s.name as s.descr for s in samples" ng-model="selectedSample" ng-selected="s.name==initSample" ng-change="loadSample(selectedSample)"></select>
+                    (from <a href="http://www.sitepoint.com/10-example-json-files/">SitePoint</a>)
                     </label>
                 </span>
             </div>
         </div>
     </section>
-
     <section class="objSection">
         <div class="editor-panel" ng-if="targetObj" ng-init="target=targetObj">
             <script type="text/ng-template" id="objTemplate">
@@ -50,13 +54,10 @@
     </section>
     <footer>
         <div>
-            <a href="#" target="_blank"><i class="fa fa-github"></i> Contribute</a>
+            <a href="https://github.com/seoriy/Json-notepad" target="_blank"><i class="fa fa-github"></i> GitHub</a>
         </div>
         <div>
-            <a href="#" target="_blank"><i class="fa fa-bullhorn"></i> Feedback</a>
-        </div>
-        <div>
-            <a href="#" target="_blank"><i class="fa fa-comments-o"></i> Discuss</a>
+            <a href="https://github.com/seoriy/Json-notepad/issues/new" target="_blank"><i class="fa fa-bullhorn"></i> Feedback</a>
         </div>
     </footer>
 </body>

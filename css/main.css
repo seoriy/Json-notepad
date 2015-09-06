@@ -1,12 +1,36 @@
+.version-label{
+    /*font-size: 50%;*/
+    font-size: small;
+    vertical-align: super;
+}
+.header-panel{
+    display: inline-block;
+}
+.header-info{
+    display: inline-block;
+    float: right;
+    position: relative;
+    vertical-align: center;
+    /*text-align: right;*/
+    margin-right: 20px;
+}
+
 .objSection, section.toolbar {
     margin-left: 20px;
     margin-right: 20px;
+}
+.objSection{    
+    margin-bottom: 150px;
 }
 footer {
     background: dodgerblue;
     color: white !important;
     margin: 50px 0px 0px 0px;
-    padding: 20px 50px 20px;
+    padding: 10px 50px 10px;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 5;
 }
 footer>div {
     margin: 0px;

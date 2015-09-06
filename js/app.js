@@ -2,11 +2,10 @@
     'use strict';
     function toJson(o) {
         var str = JSON.stringify(o);
-        // alert(str);
         return str;
     }
 
-    var app = angular.module("jsonEditor", [])  //["sf.treeRepeat"])
+    var app = angular.module("jsonEditor", [])
         .controller("RootObj", ["$scope", "$q", "$http", function ($scope, $q, $http) {
             $scope.samples = [
                 { name: "", descr: "<None>" },
@@ -21,11 +20,8 @@
                 { name: "youtube", descr: "youtube" },
             ];
 
-            //$scope.sample = { "name": "foundation", "version": "5.5.2", "main": ["css/foundation.css", "css/foundation.css.map", "js/foundation.js"], "ignore": [], "dependencies": { "jquery": ">= 2.1.0", "modernizr": ">= 2.7.2", "fastclick": ">=0.6.11", "jquery.cookie": "~1.4.0", "jquery-placeholder": "~2.0.7" }, "devDependencies": { "jquery.autocomplete": "devbridge/jQuery-Autocomplete#1.2.9", "lodash": "~2.4.1" }, "private": true, "homepage": "https://github.com/zurb/bower-foundation", "_release": "5.5.2", "_resolution": { "type": "version", "tag": "5.5.2", "commit": "9bad0646cb1c41d230e79ffe381491b7f703fc52" }, "_source": "git://github.com/zurb/bower-foundation.git", "_target": "~5.5.2", "_originalSource": "foundation", "_direct": true };
             function init() {
                 $scope.toJson = toJson;
-                //$scope.sample = { name: "Nikola", lastName: "Tesla", Pattents: [{ name: "Electric psubmitValueropulsion", year: 1879 }, { name: "Tesla Generator", year: 1894 }] };
-                // use some bower config for example
                 if (!$scope.targetObj)
                     $scope.targetObj = $scope.sample;
 
@@ -73,11 +69,11 @@
             $scope.isSimpleField = function (obj) { return angular.isString(obj) || angular.isNumber(obj) || angular.isDate(obj); };
             $scope.isStringField = function (obj) { return angular.isString(obj); };
             $scope.isNumberField = function (obj) { return angular.isNumber(obj); };
-            $scope.isDateField = function (obj) { return angular.isDate(obj); };
+            $scope.isDateField   = function (obj) { return angular.isDate(obj); };
 
             $scope.isLabelDefined = function (f) { return f == 0 || f; };
-            $scope.isArrayField = function (obj) { return angular.isArray(obj); };
-            $scope.isObjectField = function (obj) { return !angular.isArray(obj) && angular.isObject(obj); };
+            $scope.isArrayField   = function (obj) { return angular.isArray(obj); };
+            $scope.isObjectField  = function (obj) { return !angular.isArray(obj) && angular.isObject(obj); };
             $scope.isLink = function (str) {
                 return angular.isString(str) && (str.trim().indexOf('http://') === 0 || str.trim().indexOf('https://') === 0);
             }
@@ -111,8 +107,8 @@
 
             // editor methods            
             $scope.resetInput = function () {
-                init();
                 $scope.jsonObj = JSON.stringify($scope.sample);
+                $scope.parseObject();
             }
 
             $scope.parseObject = function () {
@@ -122,7 +118,6 @@
 
                     var defer = $q.defer();
                     defer.promise.then(function (val) {
-                        // alert($scope.jsonObj);
                         $scope.errorMessage = null;
                         if ($scope.jsonObj) {
                             $scope.targetObj = val;
@@ -138,14 +133,8 @@
                         catch (e) {
                             defer.reject(e);
                         }
-                    }, $scope.jsonObj.length / 10000 + 5);//Math.abs(Math.log($scope.jsonObj)) + 5);
+                    }, 5);
                 }
             };
-
-
-            $http.get('data/samples/sample-colors.json', { transformResponse: [] }).then(function (resp) {
-                $scope.jsonObj = resp.data;
-                $scope.parseObject();
-            });
         }]);
 })();
