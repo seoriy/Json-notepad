@@ -1,0 +1,28 @@
+{
+  "name": "json-notepad",
+  "version": "0.0.1",
+  "homepage": "https://github.com/seoriy/Json-notepad",
+  "authors": [
+    "seoriy <https://github.com/seoriy>"
+  ],
+  "description": "Json viewer",
+  "keywords": [
+    "json"
+  ],
+  "license": "Apache v2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-recursion": "~1.0.5",
+    "dotjem-angular-tree": "~0.2.1",
+    "angular": "angularjs#~1.4.5",
+    "angular-tree-repeat": "~0.0.1",
+    "font-awesome": "~4.4.0",
+    "foundation": "~5.5.2"
+  }
+}

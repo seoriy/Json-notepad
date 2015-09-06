@@ -3,6 +3,9 @@
     font-size: small;
     vertical-align: super;
 }
+html, body {
+	height: 100%;
+}
 .header-panel{
     display: inline-block;
 }
@@ -20,7 +23,8 @@
     margin-right: 20px;
 }
 .objSection{    
-    margin-bottom: 150px;
+    margin-bottom: 100px;
+    /*min-height: 100%;*/
 }
 footer {
     background: dodgerblue;
@@ -29,11 +33,10 @@ footer {
     padding: 10px 50px 10px;
     bottom: 0;
     width: 100%;
-    position: fixed;
-    z-index: 5;
 }
 footer>div {
     margin: 0px;
+    margin-right: 100px !important;
     display: inline-block;
     font-size: 120%;
     margin-right: 2em;
@@ -45,7 +48,6 @@ footer>div>* {
 /************
      TOOLBAR
 ************/
-
 .sampleSelect{
     display: inline-block !important;
     width: 100px !important;
