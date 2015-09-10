@@ -48,7 +48,7 @@
                         $http.get('data/samples/sample-' + sampleName + '.json', { transformResponse: [] }).then(function (resp) {
                             $scope.jsonObj = resp.data;
                             $scope.parseObject();
-                            $analytics.eventTrack('loadSample', sampleName);
+                            $analytics.eventTrack('loadSample', {  category: 'samples', label: sampleName });
                         });
                     }
                 }
