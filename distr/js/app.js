@@ -10,8 +10,8 @@
         return str;
     }
 
-    var app = angular.module("jsonEditor", [])
-        .controller("RootObj", ["$scope", "$q", "$http", function ($scope, $q, $http) {
+    var app = angular.module("jsonEditor", ['angulartics', 'angulartics.google.analytics'])
+        .controller("RootObj", ["$scope", "$q", "$http", "$analytics", function ($scope, $q, $http, $analytics) {
             $scope.samples = [
                 { name: "", descr: "<None>" },
                 { name: "colors", descr: "colors" },
@@ -48,6 +48,7 @@
                         $http.get('data/samples/sample-' + sampleName + '.json', { transformResponse: [] }).then(function (resp) {
                             $scope.jsonObj = resp.data;
                             $scope.parseObject();
+                            $analytics.eventTrack('loadSample', sampleName);
                         });
                     }
                 }
