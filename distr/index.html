@@ -44,8 +44,10 @@
         <div class="form">
             <textarea rows="5" ng-model="jsonObj"></textarea>
             <div class="form-toolbar">
-                <a class="button small" analytics-on="click" ng-click="parseObject()">Parse</a>
-                <a class="button small secondary" analytics-on="click" ng-click="resetInput()">Clear</a>
+                <a class="button small" ng-click="parseObject()" analytics-on analytics-category="Actions" analytics-event="parse-obj">
+                    Parse</a>
+                <a class="button small secondary" analytics-on="click" ng-click="resetInput()" analytics-on analytics-category="Actions" analytics-event="parse-obj">
+                    Clear</a>
                 <span>
                     <label>Samples&nbsp;
                     <select name="samples" class="sampleSelect" ng-options="s.name as s.descr for s in samples" ng-model="selectedSample" ng-selected="s.name==initSample" ng-change="loadSample(selectedSample)"></select>
@@ -71,7 +73,8 @@
             <a href="https://github.com/seoriy/Json-notepad/issues/new" target="_blank"><i class="fa fa-bullhorn"></i> Feedback</a>
         </div>
         <div>
-            <a href="terms.txt" target="_blank">Terms of use & Privacy</a>
+            <a href="terms.txt" target="_blank" analytics-on analytics-category="Meta" analytics-event="terms-request">
+                Terms of use & Privacy</a>
         </div>
         <div>
             2015 © Sergii Kovalchuk
