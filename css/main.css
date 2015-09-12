@@ -38,11 +38,24 @@ footer>div {
     margin: 0px;
     margin-right: 100px !important;
     display: inline-block;
-    font-size: 120%;
     margin-right: 2em;
 }
-footer>div>* {
+footer>div>* {  
     color: white !important;
+    font-size: 90% !important;
+}
+footer>div>a{
+    font-weight: bold;
+}
+
+footer>div.footer-techs {
+    /*float: right;*/
+    text-align: right;
+}
+
+footer>div.footer-big
+{
+    font-size: 120% !important;
 }
 
 /************

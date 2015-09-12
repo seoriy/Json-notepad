@@ -1,16 +1,11 @@
 <div class="row-container">
     <div ng-if="isSimpleField(v)" class="str-row" ng-init="editValue=v">
-        <!--ng-dblclick="editField(f, itemIndex)"-->
         <span class="label label-simple" ng-if="isLabelDefined(f)" ng-bind="::f"></span>
 
         <a class="field field-simple" ng-if="isLink(v) && !isEditingField(f, itemIndex)" target="_blank" ng-bind="::v" ng-href="{{::v}}"></a>
         <span class="field field-simple" ng-if="!isLink(v) && !isEditingField(f, itemIndex)" ng-bind="::v" 
               ng-class="{'field-str': isStringField(v), 'field-num': isNumberField(v), 'field-date': isDateField(v)}"></span>
-        <!--editor-->
         <span class="edit-field">
-            <!-- TODO: how to autofocus https://coderwall.com/p/a41lwa/angularjs-auto-focus-into-input-field-when-ng-show-event-is-triggered-->
-            <!--<input type="text" ng-if="isEditingField(f, itemIndex)" ng-model="editValue" ng-blur="editField('', -1)" autofocus
-            ng-keyup="$event.keyCode == 13 && editField('', -1) && submitValue(editValue, target, f, $index)"></span>-->
     </div>
     <div ng-if="isArrayField(v)" class="array-row" ng-init="arr=parseArray(v)">
         <div class="label label-array" ng-if="isLabelDefined(f)" ng-bind="::f"></div>
