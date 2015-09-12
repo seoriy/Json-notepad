@@ -10,7 +10,7 @@
         return str;
     }
 
-    var app = angular.module("jsonEditor", ['angulartics', 'angulartics.google.analytics'])
+    angular.module("jsonEditor", ['angulartics', 'angulartics.google.analytics'])
         .controller("RootObj", ["$scope", "$q", "$http", "$analytics", function ($scope, $q, $http, $analytics) {
             $scope.samples = [
                 { name: "", descr: "<None>" },

@@ -18,10 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-recursion": "~1.0.5",
-    "dotjem-angular-tree": "~0.2.1",
     "angular": "angularjs#~1.4.5",
-    "angular-tree-repeat": "~0.0.1",
     "font-awesome": "~4.4.0",
     "foundation": "~5.5.2"
   }
