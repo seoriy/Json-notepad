@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8">
+<!--
+    Copyright 2015 © Sergii Kovalchuk
+    File is provided under Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+-->
 
 <head>
-    <meta http-equiv="refresh" content="0; url=http://seoriy.github.io/Json-notepad/distr/index.html" />
-    <!--<title>JSON notepad</title>
- 
-    <link rel="stylesheet" href="bower_components/foundation/css/foundation.css">
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+    <title>JSON notepad</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angulartics/0.19.3/angulartics.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angulartics/0.19.3/angulartics-ga.min.js"></script>
 
-    <script src="js/utils.js"></script>
-    <script src="js/app.js"></script>-->
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </head>
- 
+
 <body ng-app="jsonEditor" ng-controller="RootObj">
-    <!--<header>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-67403317-1', 'auto');
+  // not used, because of angulartics.google.analytics plugin https://luisfarzati.github.io/angulartics/
+  //ga('send', 'pageview');
+    </script>
+
+    <header>
         <div class="panel">
             <div class="header-panel">
                 <h2>JSON notepad <span class="version-label">(0.0.1)</span></h2>
             </div>
-            <div class="header-info">
-                <i class="fa fa-exclamation"></i> Editing is not supported yet.</div>
+            <div class="header-info"><i class="fa fa-exclamation"></i> Editing is not supported yet.</div>
         </div>
     </header>
     <section class="toolbar">
         <div class="form">
             <textarea rows="5" ng-model="jsonObj"></textarea>
             <div class="form-toolbar">
-                <a id="" class="button small " ng-click="parseObject()">Parse</a>
-                <a id="" class="button small secondary" ng-click="resetInput()">Clear</a>
+                <a class="button small" ng-click="parseObject()" analytics-on analytics-category="Actions" analytics-event="parse-obj">
+                    Parse</a>
+                <a class="button small secondary" analytics-on="click" ng-click="resetInput()" analytics-on analytics-category="Actions"
+                analytics-event="parse-obj">
+                    Clear</a>
                 <span>
                     <label>Samples&nbsp;
                     <select name="samples" class="sampleSelect" ng-options="s.name as s.descr for s in samples" ng-model="selectedSample" ng-selected="s.name==initSample" ng-change="loadSample(selectedSample)"></select>
@@ -50,21 +64,22 @@
             </script>
             <div ng-include="'objTemplate'"></div>
         </div>
-        <div ng-if="errorMessage" class="alert-box alert" ng-bind="errorMessage">
-        </div>
+        <div ng-if="errorMessage" class="alert-box alert" ng-bind="errorMessage"></div>
     </section>
     <footer>
-        <div>
+        <div class="footer-big">
             <a href="https://github.com/seoriy/Json-notepad" target="_blank"><i class="fa fa-github"></i> GitHub</a>&nbsp;&nbsp;&nbsp;
             <a href="https://github.com/seoriy/Json-notepad/issues/new" target="_blank"><i class="fa fa-bullhorn"></i> Feedback</a>
         </div>
-        <div>
-            <a href="http://www.apache.org/licenses/LICENSE-2.0">License</a>
+        <div><a href="terms.txt" target="_blank" analytics-on analytics-category="Meta" analytics-event="terms-request">
+                Terms of use & Privacy</a>
         </div>
-        <div>
-            Built with <a href="https://angularjs.org/">Angular JS</a>, <a href="http://foundation.zurb.com/">ZURB Foundation</a>, <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>
+        <div>2015 © Sergii Kovalchuk</div>
+        <div class="footer-techs">
+            Built with <a href="https://angularjs.org/">Angular JS</a>, <a href="http://foundation.zurb.com/">ZURB Foundation</a>,
+            <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>
         </div>
-    </footer>-->
+    </footer>
 </body>
 
 </html>

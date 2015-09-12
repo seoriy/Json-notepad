@@ -1,1 +1,0 @@
-Samples from http://www.sitepoint.com/10-example-json-files/
