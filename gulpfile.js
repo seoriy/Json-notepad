@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var beautify = require('gulp-beautify');
-var reload = require('gulp-livereload');
 var del = require('del');
 var uglify = require('gulp-uglify');
 
@@ -33,15 +32,19 @@ gulp.task('prod-build', ['build'], function () {
         .pipe(gulp.dest('js'));
 });
 
-gulp.task('copy-files-distr', function () { 
-    return gulp.src([
+gulp.task('copy-files-distr', function () {
+    gulp.src([
         '_tmp/_main.js',
         'css/*.css',
         'index.html',
         'LICENSE',
-        'README.md'
+        'README.md',
+        'terms.txt'
         ])
         .pipe(gulp.dest('distr'));
+        
+    gulp.src('data/**/*.*', { base: '.' })
+        .pipe(gulp.dest('distr'));        
 });
 
 gulp.task('distr', ['copy-files-distr'], function () {

@@ -1,0 +1,7 @@
+TERMS OF USE AND PRIVACY POLICY FOR WEBSITE http://seoriy.github.io/Json-notepad
+
+Content of website is provided "as is" without warranty of any kind.
+This is a static site based on GitHub Pages. 
+The website is not collecting personal user data.
+No cookies used.
+We only may use Google Analytics Services to collect general statistic.
