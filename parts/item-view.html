@@ -1,14 +1,14 @@
 <div class="row-container">
-    <div ng-if="isSimpleField(v)" class="str-row" ng-init="editValue=v">
-        <span class="label label-simple" ng-if="isLabelDefined(f)" ng-bind="::f"></span>
+    <div ng-if="fieldService.isSimpleField(v)" class="str-row" ng-init="editValue=v">
+        <span class="label label-simple" ng-if="fieldService.isLabelDefined(f)" ng-bind="::f"></span>
 
-        <a class="field field-simple" ng-if="isLink(v) && !isEditingField(f, itemIndex)" target="_blank" ng-bind="::v" ng-href="{{::v}}"></a>
-        <span class="field field-simple" ng-if="!isLink(v) && !isEditingField(f, itemIndex)" ng-bind="::v" 
-              ng-class="{'field-str': isStringField(v), 'field-num': isNumberField(v), 'field-date': isDateField(v)}"></span>
+        <a class="field field-simple" ng-if="fieldService.isLink(v) && !fieldService.isEditingField(f, itemIndex)" target="_blank" ng-bind="::v" ng-href="{{::v}}"></a>
+        <span class="field field-simple" ng-if="!fieldService.isLink(v) && !isEditingField(f, itemIndex)" ng-bind="::v" 
+              ng-class="{'field-str': fieldService.isStringField(v), 'field-num': fieldService.isNumberField(v), 'field-date': fieldService.isDateField(v)}"></span>
         <span class="edit-field">
     </div>
-    <div ng-if="isArrayField(v)" class="array-row" ng-init="arr=parseArray(v)">
-        <div class="label label-array" ng-if="isLabelDefined(f)" ng-bind="::f"></div>
+    <div ng-if="fieldService.isArrayField(v)" class="array-row" ng-init="arr=parseArray(v)">
+        <div class="label label-array" ng-if="fieldService.isLabelDefined(f)" ng-bind="::f"></div>
         <table class="array-list" ng-if="arr">
             <tr ng-if="!arr.isSimple">
                 <th><span class="th-title">#</span></th>
@@ -29,8 +29,8 @@
             </tr>
         </table>
     </div>
-    <div ng-if="isObjectField(v)" class="obj-row">
-        <div class="label label-obj" ng-if="isLabelDefined(f)" ng-bind="::f"></div>
+    <div ng-if="fieldService.isObjectField(v)" class="obj-row">
+        <div class="label label-obj" ng-if="fieldService.isLabelDefined(f)" ng-bind="::f"></div>
         <div class="field field-obj" ng-include="'objTemplate'" ng-init="target=v; itemIndex=0"></div>
     </div>
 </div>

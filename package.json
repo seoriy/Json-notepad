@@ -1,0 +1,30 @@
+{
+  "name": "JsonEditor",
+  "version": "1.0.0",
+  "description": "This tool allow you to visualize json text data.",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "del": "^2.0.2",
+    "gulp-beautify": "^1.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^1.4.1"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seoriy/Json-notepad.git"
+  },
+  "keywords": [
+    "json"
+  ],
+  "author": "seoriy",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/seoriy/Json-notepad/issues"
+  },
+  "homepage": "https://github.com/seoriy/Json-notepad"
+}

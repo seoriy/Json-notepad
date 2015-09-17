@@ -1,6 +1,4 @@
-
-function log(msg, obj) { 
-    console.info("[OBJ]>> " + msg);
-    if (obj)
-        console.info(JSON.stringify(obj));
+function toJson(o) {
+    var str = JSON.stringify(o);
+    return str;
 }

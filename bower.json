@@ -18,8 +18,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "angularjs#~1.4.5",
-    "font-awesome": "~4.4.0",
-    "foundation": "~5.5.2"
+    "angulartics-google-analytics": "~0.1.1"
   }
 }
