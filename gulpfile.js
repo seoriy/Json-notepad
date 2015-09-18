@@ -3,11 +3,21 @@ var concat = require('gulp-concat');
 var beautify = require('gulp-beautify');
 var del = require('del');
 var uglify = require('gulp-uglify');
+var seq = require('gulp-sequence');
+var mainBowerFiles = require('gulp-main-bower-files');
+var gfi = require("gulp-file-insert");
+var rename = require("gulp-rename");
 
 var _jsBundleFilename = '_main.js';
+var tmpPath = "_tmp";
+var distrFolder = 'distr';
+
+gulp.task('default', ['dev']);
+
+////   COMMON
 
 gulp.task('build', function () {
-    return gulp.src([
+    gulp.src([
         'js/_app.header.inc',
         'js/utils.js',
         'js/jsonEditor/factories.js',
@@ -16,49 +26,99 @@ gulp.task('build', function () {
         'js/app.js',
         'js/_app.footer.inc'
     ])
-    .pipe(concat(_jsBundleFilename))
-    .pipe(gulp.dest('_tmp'));
+        .pipe(concat(_jsBundleFilename))
+        .pipe(gulp
+            .dest(tmpPath));
 });
 
-gulp.task('dev-build', ['build'], function () {
-    return gulp.src('_tmp/' + _jsBundleFilename)
-        .pipe(beautify())
-        .pipe(gulp.dest('js'));
-});
-
-gulp.task('prod-build', ['build'], function () {
-    return gulp.src('_tmp/' + _jsBundleFilename)
-        .pipe(uglify())
-        .pipe(gulp.dest('js'));
-});
-
-gulp.task('copy-files-distr', function () {
+gulp.task('distr', function (cb) {
     gulp.src([
-        '_tmp/_main.js',
         'css/*.css',
-        'index.html',
+        tmpPath + '/*.*',
         'LICENSE',
         'README.md',
         'terms.txt'
-        ])
-        .pipe(gulp.dest('distr'));
-        
-    gulp.src('data/**/*.*', { base: '.' })
-        .pipe(gulp.dest('distr'));        
+    ])
+        .pipe(gulp
+            .dest(distrFolder));
+
+    gulp.src([
+        'data/**/*.json',
+        'parts/**/*.*',
+    ], { base: '.' })
+        .pipe(gulp
+            .dest(distrFolder));
 });
 
-gulp.task('distr', ['copy-files-distr'], function () {
-    // return gulp.src('distr/index.html')
-    //     .pipe(cdn(require('./bower.json')));
+gulp.task('clean', function (cb) {
+    // return del('./' + tmpPath, cb);
 });
 
-gulp.task('clean', function () { 
-    return del(['_tmp/**', '_tmp']);
+/////   DEV
+
+gulp.task('dev-build', ['build'], function () {
+    gulp.src(tmpPath + '/' + _jsBundleFilename)
+        .pipe(beautify())
+        .pipe(gulp
+            .dest(tmpPath));
+
+    gulp.src('_index.html')
+        .pipe(rename({ basename: 'index' }))
+        .pipe(gfi({ '<!--HEADERS.INC-->': './_index.headers.dev.inc' }))
+        .pipe(gulp
+            .dest(distrFolder));
 });
 
-gulp.task('dev',  ['dev-build', 'distr', 'clean']);
-gulp.task('prod', ['prod-build', 'distr', 'clean']);
-
-gulp.task('watch', function () {
-    gulp.watch('js/**/*.js', ['dev']);
+gulp.task("dev-libs", function () {
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles({
+            oiverrides: {
+                fontAwesome: {
+                    main: [
+                        './css/font-awesome.min.css',
+                        './fonts/*.*'
+                    ]
+                }
+            }
+        }))
+        .pipe(gulp
+            .dest(distrFolder + '/libs'));
 });
+
+gulp.task('dev', function (cb) { seq('dev-build', 'dev-libs', 'distr', 'clean', cb); });
+gulp.task('dev-light', function (cb) { seq('clean', 'dev-build', 'distr', 'clean', cb); });
+
+gulp.task('dev-watch', function (cb) {
+    var watcher = gulp.watch('js/**/*.*', ['dev-light']);
+    watcher.on('change', function (event) {
+        console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+    watcher.on('ready', function (event) {
+    console.log('start wathing files...');});
+    return watcher;
+});
+gulp.task('watch', function (cb) { seq('dev-libs', 'dev-watch', 'clean', cb); });
+
+////    PROD
+
+gulp.task('prod-build', ['build'], function () {
+    gulp.src(tmpPath + '/' + _jsBundleFilename)
+        .pipe(uglify())
+        .pipe(gulp
+            .dest(tmpPath));
+
+    gulp.src('_index.html')
+        .pipe(rename({ basename: 'index' }))
+        .pipe(gfi({
+            '<!--HEADERS.INC-->': './_index.headers.prod.inc',
+            '<!--GA.INC-->': './_index.ga.prod.inc'
+        }))
+        .pipe(gulp
+            .dest(distrFolder));
+});
+
+gulp.task('del-distr', function (cb) {
+    return del('./distr', cb)
+});
+
+gulp.task('prod', function (cb) { seq('del-distr', 'clean', 'prod-build', 'distr', 'clean', cb); });

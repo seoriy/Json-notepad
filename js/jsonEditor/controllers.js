@@ -1,32 +1,31 @@
-function appendJQuery($compile, $scope) {
-    $scope.apply(function () {                 
-        var gen = function(tmlVar){ $('div.label-' + tmlVar)
-            .hover(
-            function () {
-                alert(this);
-                $(this).append("<div ng-include=\"'parts/toolbar-label-" + tmlVar + ".html\"'");
-                $compile($(this));
-            },
-            function () { 
-                $(this).remove(".toolbar");
-                $compile($(this));
-            });
-        };
-        gen('obj');
-        gen('array');
-    });
-} 
+// function appendJQuery($compile, $scope) {
+//     $scope.apply(function () {                 
+//         var gen = function(tmlVar){ $('div.label-' + tmlVar)
+//             .hover(
+//             function () {
+//                 alert(this);
+//                 $(this).append("<div ng-include=\"'parts/toolbar-label-" + tmlVar + ".html\"'");
+//                 $compile($(this));
+//             },
+//             function () { 
+//                 $(this).remove(".toolbar");
+//                 $compile($(this));
+//             });
+//         };
+//         gen('obj');
+//         gen('array');
+//     });
+// } 
 
 function RootObj(
-        $scope,
-        $http,
-        $q,
-        $timeout,
-        $compile,
-        $analytics,
-        fieldService,  
-        sampleData)
-{
+    $scope,
+    $http,
+    $q,
+    $timeout,
+    $compile,
+    $analytics,
+    fieldService,
+    sampleData) {
     $scope.samples = sampleData;
     $scope.fieldService = fieldService;
 
@@ -44,7 +43,7 @@ function RootObj(
     init();
     $scope.jsonText = JSON.stringify($scope.targetObj);
 
-    $scope.loadSample = function (sampleName) {
+    $scope.loadSample = function loadSample(sampleName) {
         if (sampleName && sampleName != '') {
             if ($scope.sampleName == "<None>") {
                 $scope.jsonText = "{}";
@@ -57,25 +56,24 @@ function RootObj(
                 });
             }
         }
-    };           
+    };
 
-    $scope.iterateObj = function (obj) {
+    $scope.iterateObj = function iterateObj(obj) {
         var fields = [];
         angular.forEach(obj, function (v, k) { fields.push({ field: k, value: v }) }, fields);
         return fields;
     };
 
-    $scope.parseArray = function (arr) {
+    $scope.parseArray = function parseArray(arr) {
         if (!arr || !arr.length)
             return null;
 
-        var fields = []; 
+        var fields = [];
 
-        for (var i = 0; i < arr.length; i++) { 
+        for (var i = 0; i < arr.length; i++) {
             var o = arr[i];
             if (o && angular.isObject(o)) {
                 for (var key in o) {
-                    key = key.toLowerCase();
                     if (o.hasOwnProperty(key) && fields.indexOf(key) == -1) {
                         fields.push(key);
                     }
@@ -87,25 +85,28 @@ function RootObj(
     };
 
     // editor methods
-    $scope.resetInput = function () {
+    $scope.resetInput = function resetInput() {
         $scope.jsonText = JSON.stringify($scope.sample);
         $scope.parseObject();
     }
 
-    $scope.parseObject = function () {
+    $scope.parseObject = function parseObject() {
         init();
         $scope.targetObj = null;
         if ($scope.jsonText) {
             var defer = $q.defer();
-            defer.promise.then(function (val) {
-                $scope.errorMessage = null;
-                if ($scope.jsonText) {
-                    $scope.targetObj = val;
-                }
-                $timeout(function () { appendJQuery($compile, $scope); });
-            }, function (err) {
-                $scope.errorMessage = err;
-            });
+            defer.promise.then(
+                function (val) {
+                    $scope.errorMessage = null;
+                    if ($scope.jsonText) {
+                        $scope.targetObj = val;
+                    }
+                    //$timeout(function () { appendJQuery($compile, $scope); });
+                },
+                function (err) {
+                    $scope.errorMessage = err;
+                });
+
             $timeout(function () {
                 try {
                     var val = angular.fromJson($scope.jsonText)
@@ -119,17 +120,17 @@ function RootObj(
     };
     
     // editing
-    $scope.editField = function (field, itemIndex) {
+    $scope.editField = function editField(field, itemIndex) {
         $scope.editScope.editingField = field;
         $scope.editScope.editingItemIndex = itemIndex;
         return true;
     };
 
-    $scope.isEditingField = function (f, itemIndex) {
+    $scope.isEditingField = function isEditingField(f, itemIndex) {
         return $scope.editScope.editingField == f && $scope.editScope.editingItemIndex == itemIndex;
     };
 
-    $scope.submitValue = function (val, target, field, index) {
+    $scope.submitValue = function submitValue(val, target, field, index) {
         if (field)
             target[field] = val;
         else if (index != -1)

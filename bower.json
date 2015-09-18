@@ -1,23 +1,41 @@
 {
-  "name": "json-notepad",
-  "version": "0.0.1",
-  "homepage": "https://github.com/seoriy/Json-notepad",
-  "authors": [
-    "seoriy <https://github.com/seoriy>"
-  ],
-  "description": "Json viewer",
-  "keywords": [
-    "json"
-  ],
-  "license": "Apache v2.0",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angulartics-google-analytics": "~0.1.1"
-  }
+    "name": "json-notepad",
+    "version": "0.0.1",
+    "homepage": "https://github.com/seoriy/Json-notepad",
+    "authors": [
+        "seoriy <https://github.com/seoriy>"
+    ],
+    "description": "Json viewer",
+    "keywords": [
+        "json"
+    ],
+    "license": "Apache v2.0",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "angularjs#~1.4.5",
+        "angulartics-google-analytics": "~0.1.1",
+        "font-awesome": "~4.4.0",
+        "foundation": "~5.5.2",
+        "jquery": "~2.1.4",
+        "modernizr": "~2.8.3"
+    },
+    "overrides": {
+        "font-awesome": {
+            "main": [
+                "css/font-awesome.css",
+                "fonts/fontawesome-webfont.eot",
+                "fonts/fontawesome-webfont.svg",
+                "fonts/fontawesome-webfont.ttf",
+                "fonts/fontawesome-webfont.woff",   
+                "fonts/fontawesome-webfont.woff2",
+                "fonts/FontAwesome.otf"
+            ]
+        }
+    }
 }

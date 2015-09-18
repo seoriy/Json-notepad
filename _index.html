@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<!--
+    Copyright 2015 © Sergii Kovalchuk
+    File is provided under Apache License 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+-->
+<head>
+    <title>JSON notepad</title> 
+<!--HEADERS.INC-->
+</head>
+
+<body ng-app="jsonEditor" ng-controller="RootObj">
+<!--GA.INC-->
+    <header>
+        <div class="panel">
+            <div class="header-panel">
+                <h2>JSON notepad <span class="version-label">(0.0.1)</span></h2>
+            </div>
+            <div class="header-info"><i class="fa fa-exclamation"></i> Editing is not supported yet.</div>
+        </div>
+    </header>
+    <section class="toolbar">
+        <div class="form">
+            <textarea rows="5" ng-model="jsonText"></textarea>
+            <div class="form-toolbar">
+                <a class="button small" ng-click="parseObject()" analytics-on analytics-category="Actions" analytics-event="parse-obj">
+                    Parse</a>
+                <a class="button small secondary" analytics-on="click" ng-click="resetInput()" analytics-on analytics-category="Actions"
+                analytics-event="parse-obj">
+                    Clear</a>
+                <span>
+                    <label>Samples&nbsp;
+                    <select name="samples" class="sampleSelect" ng-options="s.name as s.descr for s in samples" ng-model="selectedSample" ng-selected="s.name==initSample" ng-change="loadSample(selectedSample)"></select>
+                    (from <a href="http://www.sitepoint.com/10-example-json-files/">SitePoint</a>)
+                    </label>
+                </span>
+            </div>
+        </div>
+    </section>
+    
+    <!--VISUALIZER-->
+    <section class="objSection">
+        <div class="editor-panel" ng-if="targetObj" ng-init="target=targetObj">
+            <script type="text/ng-template" id="objTemplate">
+                <div ng-repeat="(f, v) in target" ng-include="'parts/item-view.html'"></div>
+            </script>
+            <div ng-include="'objTemplate'"></div>
+        </div>
+        <div ng-if="errorMessage" class="alert-box alert" ng-bind="errorMessage"></div>
+    </section>
+    
+    <!--FOOTER-->
+    <footer>
+        <div class="footer-big">
+            <a href="https://github.com/seoriy/Json-notepad" target="_blank"><i class="fa fa-github"></i> GitHub</a>&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com/seoriy/Json-notepad/issues/new" target="_blank"><i class="fa fa-bullhorn"></i> Feedback</a>
+        </div>
+        <div><a href="terms.txt" target="_blank" analytics-on analytics-category="Meta" analytics-event="terms-request">
+                Terms of use & Privacy</a>
+        </div>
+        <div>2015 © Sergii Kovalchuk</div>
+        <div class="footer-techs">
+            Built with <a href="https://angularjs.org/">Angular JS</a>, <a href="http://foundation.zurb.com/">ZURB Foundation</a>,
+            <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a>
+        </div>
+    </footer>
+</body>
+</html>
