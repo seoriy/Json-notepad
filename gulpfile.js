@@ -34,7 +34,6 @@ gulp.task('build', function () {
 gulp.task('distr', function (cb) {
     gulp.src([
         'css/*.css',
-        tmpPath + '/*.*',
         'LICENSE',
         'README.md',
         'terms.txt'
@@ -43,16 +42,14 @@ gulp.task('distr', function (cb) {
             .dest(distrFolder));
 
     gulp.src([
-        'data/**/*.json',
+        'data/**/*.*',
         'parts/**/*.*',
     ], { base: '.' })
         .pipe(gulp
             .dest(distrFolder));
 });
 
-gulp.task('clean', function (cb) {
-    // return del('./' + tmpPath, cb);
-});
+// gulp.task('clean', function () { });
 
 /////   DEV
 
@@ -85,8 +82,8 @@ gulp.task("dev-libs", function () {
             .dest(distrFolder + '/libs'));
 });
 
-gulp.task('dev', function (cb) { seq('dev-build', 'dev-libs', 'distr', 'clean', cb); });
-gulp.task('dev-light', function (cb) { seq('clean', 'dev-build', 'distr', 'clean', cb); });
+gulp.task('dev', function (cb) { seq('dev-build', 'dev-libs', 'distr', cb); });
+gulp.task('dev-light', function (cb) { seq('clean', 'dev-build', 'distr', cb); });
 
 gulp.task('dev-watch', function (cb) {
     var watcher = gulp.watch('js/**/*.*', ['dev-light']);
@@ -97,7 +94,7 @@ gulp.task('dev-watch', function (cb) {
     console.log('start wathing files...');});
     return watcher;
 });
-gulp.task('watch', function (cb) { seq('dev-libs', 'dev-watch', 'clean', cb); });
+gulp.task('watch', function (cb) { seq('dev-libs', 'dev-watch', cb); });
 
 ////    PROD
 
@@ -105,7 +102,7 @@ gulp.task('prod-build', ['build'], function () {
     gulp.src(tmpPath + '/' + _jsBundleFilename)
         .pipe(uglify())
         .pipe(gulp
-            .dest(tmpPath));
+            .dest(distrFolder));
 
     gulp.src('_index.html')
         .pipe(rename({ basename: 'index' }))
@@ -119,6 +116,9 @@ gulp.task('prod-build', ['build'], function () {
 
 gulp.task('del-distr', function (cb) {
     return del('./distr', cb)
+});
+
+gulp.task('prod', function (cb) { seq('del-distr', 'prod-build', 'distr', cb); });
 });
 
 gulp.task('prod', function (cb) { seq('del-distr', 'clean', 'prod-build', 'distr', 'clean', cb); });
