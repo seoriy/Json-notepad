@@ -16,7 +16,7 @@ gulp.task('default', ['dev']);
 
 ////   COMMON
 
-gulp.task('build', function () {
+gulp.task('build-js', function () {
     gulp.src([
         'js/_app.header.inc',
         'js/utils.js',
@@ -53,11 +53,11 @@ gulp.task('distr', function (cb) {
 
 /////   DEV
 
-gulp.task('dev-build', ['build'], function () {
+gulp.task('dev-build', ['build-js'], function () {
     gulp.src(tmpPath + '/' + _jsBundleFilename)
         .pipe(beautify())
         .pipe(gulp
-            .dest(tmpPath));
+            .dest(distrFolder));
 
     gulp.src('_index.html')
         .pipe(rename({ basename: 'index' }))
@@ -98,9 +98,9 @@ gulp.task('watch', function (cb) { seq('dev-libs', 'dev-watch', cb); });
 
 ////    PROD
 
-gulp.task('prod-build', ['build'], function () {
+gulp.task('prod-build', ['build-js'], function () {
     gulp.src(tmpPath + '/' + _jsBundleFilename)
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(gulp
             .dest(distrFolder));
 
@@ -119,6 +119,3 @@ gulp.task('del-distr', function (cb) {
 });
 
 gulp.task('prod', function (cb) { seq('del-distr', 'prod-build', 'distr', cb); });
-});
-
-gulp.task('prod', function (cb) { seq('del-distr', 'clean', 'prod-build', 'distr', 'clean', cb); });
