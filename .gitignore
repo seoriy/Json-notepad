@@ -5,3 +5,4 @@ org/plan.txt
 .vscode/
 npm-debug.log
 _tmp/
+distr/
