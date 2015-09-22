@@ -9,4 +9,4 @@
     <script src="libs/angulartics/src/angulartics.js"></script>
     <script src="libs/angulartics-google-analytics/dist/angulartics-google-analytics.min.js"></script>    
 
-    <script type="text/javascript" src="_main.js"></script>
+    <script type="text/javascript" src="main.js"></script>

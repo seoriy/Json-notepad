@@ -8,7 +8,7 @@ var mainBowerFiles = require('gulp-main-bower-files');
 var gfi = require("gulp-file-insert");
 var rename = require("gulp-rename");
 
-var _jsBundleFilename = '_main.js';
+var _jsBundleFilename = 'main.js';
 var tmpPath = "_tmp";
 var distrFolder = 'distr';
 

@@ -9,4 +9,4 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angulartics/0.19.3/angulartics.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angulartics/0.19.3/angulartics-ga.min.js"></script>
 
-    <script type="text/javascript" src="_main.js"></script>
+    <script type="text/javascript" src="main.js"></script>
